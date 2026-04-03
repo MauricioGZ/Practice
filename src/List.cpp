@@ -11,6 +11,15 @@ List::List () : head (nullptr) {}
 
 List::List (Node* n) : head (n) {}
 
+List::~List () {
+  Node* current_node = head;
+  while (current_node != nullptr) {
+    Node* next_node = current_node->next;
+    delete current_node;
+    current_node = next_node;
+  }
+}
+
 void List::add (int value) {
   Node* new_node = new Node (value);
   if (head == nullptr) {
