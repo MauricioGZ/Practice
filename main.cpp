@@ -25,14 +25,14 @@ public:
   ListNode* addTwoNumbers(const ListNode* l1, const ListNode* l2) {
     if ((l1 == nullptr) || (l2 == nullptr)) return nullptr;
     int sum = l1->val + l2->val;
-    int carry = sum / 10;
     ListNode* new_list_node = new ListNode (sum % 10);
     ListNode* head = new_list_node;
     ListNode* current1 = l1->next;
     ListNode* current2 = l2->next;
 
+    sum /= 10;
+
     while ((current1 != nullptr) || (current2 != nullptr)) {
-      sum = carry;
       if (current1 != nullptr) {
         sum += current1->val;
         current1 = current1->next;
@@ -43,11 +43,11 @@ public:
       }
       new_list_node->next = new ListNode (sum % 10);
       new_list_node = new_list_node->next;
-      carry = sum / 10;
+      sum /= 10;
     }
 
-    if (carry > 0) {
-      new_list_node->next = new ListNode (carry);
+    if (sum > 0) {
+      new_list_node->next = new ListNode (sum);
     }
     return head;
   }
