@@ -13,7 +13,10 @@ struct List {
   List ();
   List (Node* n);
   ~List ();
+  List (const List& other);
+  List (List&& other) noexcept;
+  List& operator= (const List& other);
+  List& operator= (List&& other) noexcept;
   void add (int value);
-  void add (Node* node);
   void print (void) const;
 };
